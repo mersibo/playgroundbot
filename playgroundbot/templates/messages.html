@@ -1,0 +1,11 @@
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">
+            <strong>{{ message.sender }}:</strong> {{ message.message }}
+            <br>
+            <small class="timestamp">{{ message.timestamp }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No messages available.</p>
+{% endif %}

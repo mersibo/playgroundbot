@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление текстами бота</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f9f9;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #e0f2f1;
+        }
+        a {
+            text-decoration: none;
+            color: #00796b;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #00796b;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Управление текстами бота</h1>
+        <ul>
+            {% for text in bot_texts %}
+                <li>
+                    {{ text[1] }} 
+                    <a href="{{ url_for('edit_text', text_id=text[0]) }}">Редактировать</a>
+                    <form action="{{ url_for('delete_text', text_id=text[0]) }}" method="post">
+                        <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот текст?');">Удалить</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('add_text') }}"><button>Добавить новый текст</button></a>
+        <br>
+        <br>
+        <br>
+        <a href="{{ url_for('index') }}">
+            <button>На главную</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспорт контактов</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f9f9;
+            color: #333;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #00796b;
+        }
+        a {
+            text-decoration: none;
+            color: #00796b;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #00796b;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Экспорт контактов</h1>
+        {% if download_link %}
+            <p>Ваш файл с контактами доступен для <a href="{{ url_for('static', filename='contacts_export.xlsx') }}" download>скачивания</a>.</p>
+        {% else %}
+            <form action="{{ url_for('export_contacts') }}" method="post">
+                <button type="submit">Экспортировать контакты</button>
+            </form>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('index') }}">
+            <button>На главную</button>
+        </a>
+    </div>
+</body>
+</html>

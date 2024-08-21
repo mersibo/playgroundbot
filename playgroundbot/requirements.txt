@@ -1,0 +1,5 @@
+Flask==3.0.3
+Flask_SocketIO==5.3.6
+pandas==2.2.2
+python-telegram-bot==21.4
+Werkzeug==3.0.4

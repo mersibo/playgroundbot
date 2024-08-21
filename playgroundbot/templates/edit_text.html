@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать текст</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f9f9;
+            color: #333;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            color: #00796b;
+        }
+        textarea, input[type="file"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #00796b;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Редактировать текст</h1>
+        <form action="{{ url_for('edit_text', text_id=text[0]) }}" method="post" enctype="multipart/form-data">
+            <label for="key">Ключ:</label>
+            <input type="text" id="key" name="key" value="{{ text[1] }}" required>
+            
+            <label for="content">Содержание:</label>
+            <textarea id="content" name="content" rows="4" required>{{ text[2] }}</textarea>
+            
+            <label for="file">Загрузить файл:</label>
+            <input type="file" id="file" name="file">
+            
+            <button type="submit">Обновить</button>
+        </form>
+    </div>
+</body>
+</html>
